@@ -34,7 +34,7 @@ public class ProductController {
         long id = 1L;
         Product productObj;
         if (!productsList.isEmpty()) {
-            id = productsList.get(productsList.size() - 1).getId() + 1;
+            id = productsList.get(productsList.size() - 1).getId() + 1; // Автоинкремент для Id
         }
         productObj = new Product(id, product.getTitle(), product.getCost());
         productsList.add(productObj);
