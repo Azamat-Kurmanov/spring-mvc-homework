@@ -5,7 +5,7 @@
     <title>Products</title>
 </head>
 <body>
-    <form th:action="@{'/goods/save'}" th:object="${product}" method="post">
+    <form th:action="@{'/goods/add-product'}" th:object="${productDB}" method="post">
         <div>
             <table style="padding-bottom: 25px;">
                 <tr>
@@ -32,7 +32,7 @@
                     <th>Cost</th>
                     <th>Link</th>
                 </tr>
-                <tr th:each="s : ${productList}">
+                <tr th:each="s : ${productDBList}">
                     <td th:text="${s.id}"/>
                     <td th:text="${s.title}"/>
                     <td th:text="${s.cost}"/>
