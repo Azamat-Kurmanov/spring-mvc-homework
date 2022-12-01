@@ -45,8 +45,7 @@ public class ProductDaoImpl implements ProductDao{
         try {
             Session session = beanConfigSession.factory().getCurrentSession();
             session.beginTransaction();
-            Product product = session.get(Product.class, id);
-            session.delete(product);
+            session.delete(findById(id));
             session.getTransaction().commit();
         } finally {
             beanConfigSession.factory().close();
