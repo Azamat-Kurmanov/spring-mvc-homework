@@ -1,50 +1,50 @@
-<!--<!DOCTYPE html>-->
-<!--<html lang="en" xmlns:th="http://thymeleaf.org">-->
-<!--<head>-->
-<!--    <meta charset="UTF-8">-->
-<!--    <title>Products</title>-->
-<!--</head>-->
-<!--<body>-->
-<!--    <form th:action="@{'/goods/save'}" th:object="${product}" method="post">-->
-<!--        <div>-->
-<!--            <table style="padding-bottom: 25px;">-->
-<!--                <tr>-->
-<!--                    <th>Title</th>-->
-<!--                    <td><input type="text" th:field="*{title}"/></td>-->
-<!--                </tr>-->
-<!--                <tr>-->
-<!--                    <th>Cost</th>-->
-<!--                    <td><input type="text" th:field="*{cost}"/></td>-->
-<!--                </tr>-->
-<!--                <tr>-->
-<!--                    <td>-->
-<!--                        <input type="submit" value="Добавить">-->
-<!--                    </td>-->
-<!--                </tr>-->
-<!--            </table>-->
-<!--        </div>-->
-<!--    </form>-->
-<!--        <div>-->
-<!--            <table style="width: 100%;">-->
-<!--                <tr>-->
-<!--                    <th>ID</th>-->
-<!--                    <th>Title</th>-->
-<!--                    <th>Cost</th>-->
-<!--                    <th>Link</th>-->
-<!--                </tr>-->
-<!--                <tr th:each="s : ${productList}">-->
-<!--                    <td th:text="${s.id}"/>-->
-<!--                    <td th:text="${s.title}"/>-->
-<!--                    <td th:text="${s.cost}"/>-->
-<!--                    <td><a th:href="@{http://localhost:8280/app/goods/{id}(id = ${s.getId()})}"><input type="button" value="Get"></a></td>-->
-<!--                </tr>-->
-<!--            </table>-->
-<!--        </div>-->
-<!--</body>-->
-<!--</html>-->
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Products</title>
+</head>
+<body>
+    <form th:action="@{'/goods/add-product'}" th:object="${productDB}" method="post">
+        <div>
+            <table style="padding-bottom: 25px;">
+                <tr>
+                    <th>Title</th>
+                    <td><input type="text" th:field="*{title}"/></td>
+                </tr>
+                <tr>
+                    <th>Cost</th>
+                    <td><input type="text" th:field="*{cost}"/></td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="submit" value="Добавить">
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </form>
+        <div>
+            <table style="width: 100%;">
+                <tr>
+                    <th>ID</th>
+                    <th>Title</th>
+                    <th>Cost</th>
+                    <th>Link</th>
+                </tr>
+                <tr th:each="s : ${productDBList}">
+                    <td th:text="${s.id}"/>
+                    <td th:text="${s.title}"/>
+                    <td th:text="${s.cost}"/>
+                    <td><a th:href="@{http://localhost:8280/app/goods/{id}(id = ${s.getId()})}"><input type="button" value="Get"></a></td>
+                </tr>
+            </table>
+        </div>
+</body>
+</html>
 
-<!--<style>-->
-<!--    table, th, td {-->
-<!--        border: 1px solid black;-->
-<!--    }-->
-<!--</style>-->
+<style>
+    table, th, td {
+        border: 1px solid black;
+    }
+</style>
