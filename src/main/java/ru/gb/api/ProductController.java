@@ -33,7 +33,6 @@ public class ProductController {
 
     @PostMapping("/add-product")
     public Product addProductToDB(@RequestBody Product product) {
-        System.out.println("Controller: id: " +product.getId()+ " title: " + product.getTitle() + " price: " + product.getPrice());
         return productService.addProduct(product);
     }
 

@@ -3,8 +3,8 @@ package ru.gb.api;
 import org.hibernate.Session;
 import org.springframework.stereotype.Component;
 import ru.gb.model.Product;
-
 import java.util.List;
+
 @Component
 public class ProductDaoImpl implements ProductDao{
     private final BeanConfig beanConfigSession;
@@ -55,11 +55,15 @@ public class ProductDaoImpl implements ProductDao{
 
     @Override
     public Product saveOrUpdate(Product product) {
-        Session session = beanConfigSession.factory().getCurrentSession();
-        session.beginTransaction();
-        session.saveOrUpdate(product);
-        session.getTransaction().commit();
-        return product;
+        try {
+            Session session = beanConfigSession.factory().getCurrentSession();
+            session.beginTransaction();
+            session.saveOrUpdate(product);
+            session.getTransaction().commit();
+            return product;
+        } finally {
+            beanConfigSession.factory().close();
+        }
     }
 
 

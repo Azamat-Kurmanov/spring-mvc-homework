@@ -9,12 +9,10 @@ import java.util.List;
 @Service
 public class ProductService {
     private ProductDaoImpl productDaoImp;
-    private final BeanConfig beanConfigSession;
 
     @Autowired
-    public ProductService(ProductDaoImpl productDaoImp, BeanConfig beanConfigSession) {
+    public ProductService(ProductDaoImpl productDaoImp) {
         this.productDaoImp = productDaoImp;
-        this.beanConfigSession = beanConfigSession;
     }
 
     public Product getProductById(Long id){
