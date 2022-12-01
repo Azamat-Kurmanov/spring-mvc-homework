@@ -5,6 +5,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.gb.model.Product;
 
+import javax.websocket.server.PathParam;
 import java.util.List;
 
 @RestController
@@ -37,7 +38,9 @@ public class ProductController {
     }
 
     @DeleteMapping("/delete")
-    public boolean deleteById(@PathVariable Long id) {
-        return productService.deleteProductById(id);
+    public void deleteById(
+        @PathParam("id") Long id
+    ) {
+        productService.deleteProductById(id);
     }
 }

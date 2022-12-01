@@ -16,46 +16,46 @@ public class ProductDaoImpl implements ProductDao{
     @Override
     public Product findById(Long id) {
         try {
-            Session session = beanConfigSession.getSession();
+            Session session = beanConfigSession.factory().getCurrentSession();
             session.beginTransaction();
             Product product = session.createQuery("SELECT d FROM Product d WHERE d.id = :id", Product.class).setParameter("id", id).getSingleResult();
             session.persist(product);
             session.getTransaction().commit();
             return product;
         } finally {
-            beanConfigSession.shutdown();
+            beanConfigSession.factory().close();
         }
     }
 
     @Override
     public List<Product> findAll() {
         try {
-            Session session = beanConfigSession.getSession();
+            Session session = beanConfigSession.factory().getCurrentSession();
             session.beginTransaction();
             List<Product> products = session.createQuery("SELECT d FROM Product d").getResultList();
             session.getTransaction().commit();
             return products;
         } finally {
-            beanConfigSession.shutdown();
+            beanConfigSession.factory().close();
         }
     }
 
     @Override
-    public Boolean deleteById(Long id) {
-        Session session = beanConfigSession.getSession();
-        session.beginTransaction();
-        Product product = session.get(Product.class, id);
-        session.delete(product);
-        session.getTransaction().commit();
-        if (findById(id) == null) {
-            return true;
+    public void deleteById(Long id) {
+        try {
+            Session session = beanConfigSession.factory().getCurrentSession();
+            session.beginTransaction();
+            Product product = session.get(Product.class, id);
+            session.delete(product);
+            session.getTransaction().commit();
+        } finally {
+            beanConfigSession.factory().close();
         }
-        return false;
     }
 
     @Override
     public Product saveOrUpdate(Product product) {
-        Session session = beanConfigSession.getSession();
+        Session session = beanConfigSession.factory().getCurrentSession();
         session.beginTransaction();
         session.saveOrUpdate(product);
         session.getTransaction().commit();

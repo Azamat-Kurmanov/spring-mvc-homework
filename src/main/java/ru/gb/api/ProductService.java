@@ -18,31 +18,22 @@ public class ProductService {
     }
 
     public Product getProductById(Long id){
-        Product product = null;
-        if (id != null){
-            beanConfigSession.init();
-            product = productDaoImp.findById(id);
-        }
+        Product product = productDaoImp.findById(id);
         return product;
     }
 
     public List<Product> getProductList(){
-        beanConfigSession.init();
         List<Product> list = productDaoImp.findAll();
         return list;
     }
 
     public Product addProduct(Product product){
-        beanConfigSession.init();
         return productDaoImp.saveOrUpdate(product);
     }
 
-    public boolean deleteProductById(Long id){
+    public void deleteProductById(Long id){
         if (id!=null){
-            beanConfigSession.init();
-            ProductDaoImpl productDao = new ProductDaoImpl(beanConfigSession);
-            productDao.deleteById(id);
+            productDaoImp.deleteById(id);
         }
-        return false;
     }
 }
