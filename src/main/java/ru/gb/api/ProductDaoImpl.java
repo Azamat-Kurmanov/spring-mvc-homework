@@ -42,18 +42,15 @@ public class ProductDaoImpl implements ProductDao{
 
     @Override
     public Boolean deleteById(Long id) {
-        try {
-            Session session = beanConfigSession.getSession();
-            session.beginTransaction();
-            session.delete("id", Product.class);
-            session.getTransaction().commit();
-            if (findById(id) == null) {
-                return true;
-            }
-            return false;
-        } finally {
-            beanConfigSession.shutdown();
+        Session session = beanConfigSession.getSession();
+        session.beginTransaction();
+        Product product = session.get(Product.class, id);
+        session.delete(product);
+        session.getTransaction().commit();
+        if (findById(id) == null) {
+            return true;
         }
+        return false;
     }
 
     @Override
