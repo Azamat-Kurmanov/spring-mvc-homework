@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
 import java.util.List;
@@ -27,12 +29,13 @@ public class Product {
     @Column(name = "price", nullable = false)
     private double price;
 
-    @ManyToMany
-    @JoinTable(
-            name = "customer_products",
-            joinColumns = @JoinColumn(name = "product_id"),
-            inverseJoinColumns = @JoinColumn(name = "customer_id")
-    )
+
+    @ManyToMany(cascade=CascadeType.ALL)
+    @JoinTable(name = "customer_products",
+            joinColumns = { @JoinColumn(name = "product_id") },
+            inverseJoinColumns = { @JoinColumn(name = "customer_id") })
+    @LazyCollection(LazyCollectionOption.TRUE)
+
     private List<Customer> customers;
 
 

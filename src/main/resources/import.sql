@@ -1,5 +1,5 @@
-DROP TABLE IF EXISTS product;
-CREATE TABLE IF NOT EXISTS product(id bigint bigserial NOT NULL, title varchar(255), price double, primary key (id));
+DROP TABLE IF EXISTS product CASCADE;
+CREATE TABLE IF NOT EXISTS product(id bigserial PRIMARY KEY, title varchar(255), price double, primary key (id));
 INSERT INTO product (title, price) VALUES
     ('Картошка', 300),
     ('Мука', 450),
@@ -11,7 +11,7 @@ INSERT INTO product (title, price) VALUES
     ('Перец', 280);
 
 DROP TABLE IF EXISTS customers CASCADE;
-CREATE TABLE customers(id bigint bigserial NOT NULL, title varchar(255), primary key (id));
+CREATE TABLE customers(id bigserial PRIMARY KEY, title varchar(255));
 INSERT INTO customers(title) VALUES
     ('Azamat'),
     ('Serik'),
