@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-
 import javax.persistence.*;
 import java.util.List;
 
@@ -23,11 +22,11 @@ public class Customer {
     @Column(name = "name", nullable = false)
     private String name;
 
-    @ManyToMany
-    @JoinTable(
-            name = "customer_products",
-            joinColumns = @JoinColumn(name = "customer_id"),
-            inverseJoinColumns = @JoinColumn(name = "product_id")
-    )
-    private List<Customer> customers;
+//    @ManyToMany
+//    @JoinTable(
+//            name = "customer_products",
+//            joinColumns = @JoinColumn(name = "customers_id"),
+//            inverseJoinColumns = @JoinColumn(name = "product_id")
+//    )
+//    private List<Product> products;
 }

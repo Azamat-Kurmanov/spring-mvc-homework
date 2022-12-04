@@ -1,69 +1,57 @@
-package ru.gb.api;
+package ru.gb.api.services;
 
 import org.hibernate.Session;
 import org.springframework.stereotype.Component;
+import ru.gb.api.SessionFactoryUtils;
 import ru.gb.api.model.Product;
+
 import java.util.List;
 
 @Component
-public class ProductDaoImpl implements ProductDao{
-    private final BeanConfig beanConfigSession;
+public class ProductDaoImpl implements ProductDao {
+    private final SessionFactoryUtils beanConfigSession;
 
-    public ProductDaoImpl(BeanConfig beanConfigSession) {
+    public ProductDaoImpl(SessionFactoryUtils beanConfigSession) {
         this.beanConfigSession = beanConfigSession;
     }
 
     @Override
     public Product findById(Long id) {
-        try {
-            Session session = beanConfigSession.factory().getCurrentSession();
+        try(Session session = beanConfigSession.getSession()) {
             session.beginTransaction();
             Product product = session.createQuery("SELECT d FROM Product d WHERE d.id = :id", Product.class).setParameter("id", id).getSingleResult();
             session.persist(product);
             session.getTransaction().commit();
             return product;
-        } finally {
-            beanConfigSession.factory().close();
         }
     }
 
     @Override
     public List<Product> findAll() {
-        try {
-            Session session = beanConfigSession.factory().getCurrentSession();
+        try(Session session = beanConfigSession.getSession()) {
             session.beginTransaction();
             List<Product> products = session.createQuery("SELECT d FROM Product d").getResultList();
             session.getTransaction().commit();
             return products;
-        } finally {
-            beanConfigSession.factory().close();
         }
     }
 
     @Override
     public void deleteById(Long id) {
-        try {
-            Session session = beanConfigSession.factory().getCurrentSession();
+        try(Session session = beanConfigSession.getSession()) {
             session.beginTransaction();
             session.delete(findById(id));
             session.getTransaction().commit();
-        } finally {
-            beanConfigSession.factory().close();
         }
     }
 
     @Override
-    public Product saveOrUpdate(Product product) {
-        try {
-            Session session = beanConfigSession.factory().getCurrentSession();
+    public void saveOrUpdate(Product product) {
+        try(Session session = beanConfigSession.getSession()) {
             session.beginTransaction();
-            session.saveOrUpdate(product);
+            session.save(product);
             session.getTransaction().commit();
-            return product;
-        } finally {
-            beanConfigSession.factory().close();
         }
     }
-
 
 }

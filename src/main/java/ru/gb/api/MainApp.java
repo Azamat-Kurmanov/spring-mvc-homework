@@ -1,30 +1,30 @@
 package ru.gb.api;
 
-
 import org.hibernate.Session;
 import ru.gb.api.model.Product;
-import ru.gb.api.services.CustomerDaoImp;
-import ru.gb.api.services.CustomerService;
-
-import java.util.List;
+import ru.gb.api.services.ProductDao;
+import ru.gb.api.services.ProductDaoImpl;
 
 public class MainApp {
 
     public static void main(String[] args) {
-        SessionFactoryUtils SessionFactory = new SessionFactoryUtils();
+        SessionFactoryUtils sessionFactoryUtils = new SessionFactoryUtils();
+        sessionFactoryUtils.init();
+        try {
+            ProductDao productDao = new ProductDaoImpl(sessionFactoryUtils);
+//            productDao.saveOrUpdate(new Product(1L, "Картошка", 450));
+            Product product = productDao.findById(1L);
+            System.out.println("product: " + product);
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally{
+            sessionFactoryUtils.shutdown();
+        }
 
-        Session session = SessionFactory.factory().getCurrentSession();
-        session.beginTransaction();
-        Product product = session.get(Product.class, 1L);
-        System.out.println("product: " + product);
-//        System.out.println("productGetProducts: " + product.getProducts());
-        session.getTransaction().commit();
-
-//        CustomerDaoImp customerDaoImp = new CustomerDaoImp(session);
+//        SessionFactoryUtils sessionFactoryUtils = new SessionFactoryUtils();
+//        CustomerDaoImp customerDaoImp = new CustomerDaoImp(sessionFactoryUtils);
 //        CustomerService customerService = new CustomerService(customerDaoImp);
-//        List<Product> products =  customerService.getListOfProductsByUserId(1L);
-//        for (Product product: products){
-//            System.out.println("product: " + product.getProducts());
-//        }
+//        System.out.println("Start");
+//       customerService.getListOfProductsByUserId(2L);
     }
 }

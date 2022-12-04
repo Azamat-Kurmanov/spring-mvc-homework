@@ -1,4 +1,4 @@
-package ru.gb.api;
+package ru.gb.api.services;
 
 import ru.gb.api.model.Product;
 
@@ -8,5 +8,5 @@ public interface ProductDao {
     Product findById(Long id);
     List<Product> findAll();
     void deleteById(Long id);
-    Product saveOrUpdate(Product product);
+    void saveOrUpdate(Product product);
 }
