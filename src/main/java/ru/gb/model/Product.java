@@ -6,7 +6,6 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 import javax.persistence.*;
 
-
 @ToString
 @Data
 @AllArgsConstructor
@@ -24,4 +23,12 @@ public class Product {
 
     @Column(name = "price", nullable = false)
     private double price;
+
+//    @ManyToMany
+//    @JoinTable(
+//            name = "customer_products",
+//            joinColumns = @JoinColumn(name = "product_id"),
+//            inverseJoinColumns = @JoinColumn(name = "customer_id")
+//    )
+//    private List<Customer> customers;
 }
