@@ -25,8 +25,8 @@ public class ProductService {
         return list;
     }
 
-    public Product addProduct(Product product){
-        return productDaoImp.saveOrUpdate(product);
+    public void addProduct(Product product){
+        productDaoImp.saveOrUpdate(product);
     }
 
     public void deleteProductById(Long id){

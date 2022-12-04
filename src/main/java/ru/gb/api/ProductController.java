@@ -32,8 +32,8 @@ public class ProductController {
     }
 
     @PostMapping("/add-product")
-    public Product addProductToDB(@RequestBody Product product) {
-        return productService.addProduct(product);
+    public void addProductToDB(@RequestBody Product product) {
+        productService.addProduct(product);
     }
 
     @DeleteMapping("/delete")
