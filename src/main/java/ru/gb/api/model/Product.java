@@ -1,4 +1,4 @@
-package ru.gb.model;
+package ru.gb.api.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

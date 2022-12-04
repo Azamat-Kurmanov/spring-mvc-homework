@@ -1,6 +1,6 @@
 package ru.gb.api;
 
-import ru.gb.model.Product;
+import ru.gb.api.model.Product;
 
 import java.util.List;
 

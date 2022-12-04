@@ -2,7 +2,7 @@ package ru.gb.api;
 
 import org.hibernate.Session;
 import org.springframework.stereotype.Component;
-import ru.gb.model.Product;
+import ru.gb.api.model.Product;
 import java.util.List;
 
 @Component

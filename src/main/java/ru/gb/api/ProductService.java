@@ -3,7 +3,7 @@ package ru.gb.api;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import ru.gb.model.Product;
+import ru.gb.api.model.Product;
 import java.util.List;
 
 @Service
