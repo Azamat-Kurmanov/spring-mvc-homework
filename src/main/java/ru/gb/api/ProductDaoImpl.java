@@ -7,9 +7,9 @@ import java.util.List;
 
 @Component
 public class ProductDaoImpl implements ProductDao{
-    private final BeanConfig beanConfigSession;
+    private final SessionFactoryUtils beanConfigSession;
 
-    public ProductDaoImpl(BeanConfig beanConfigSession) {
+    public ProductDaoImpl(SessionFactoryUtils beanConfigSession) {
         this.beanConfigSession = beanConfigSession;
     }
 
