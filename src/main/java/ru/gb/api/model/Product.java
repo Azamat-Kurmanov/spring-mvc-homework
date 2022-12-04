@@ -27,11 +27,17 @@ public class Product {
     @Column(name = "price", nullable = false)
     private double price;
 
-//    @ManyToMany
-//    @JoinTable(
-//            name = "customer_products",
-//            joinColumns = @JoinColumn(name = "product_id"),
-//            inverseJoinColumns = @JoinColumn(name = "customer_id")
-//    )
-//    private List<Customer> customers;
+    @ManyToMany
+    @JoinTable(
+            name = "customer_products",
+            joinColumns = @JoinColumn(name = "product_id"),
+            inverseJoinColumns = @JoinColumn(name = "customer_id")
+    )
+    private List<Customer> customers;
+
+
+    public Product(String title, double price) {
+        this.title = title;
+        this.price = price;
+    }
 }

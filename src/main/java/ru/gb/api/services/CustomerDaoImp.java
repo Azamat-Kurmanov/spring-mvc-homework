@@ -20,33 +20,23 @@ public class CustomerDaoImp implements CustomerDao {
 
     @Override
     public List<Product> getProductListByUserId(Long id) {
-//        try {
-//            System.out.println("CustomerDaoImp id: " + id);
-//            Session session = beanConfigSession.getSession();
-//            session.beginTransaction();
-//            List<Product> products = session.get(Customer.class, id).getProducts();
-//            System.out.println("products: " + products);
-//            session.persist(products);
-//            session.getTransaction().commit();
-//            return products;
-//        } finally {
-//            beanConfigSession.shutdown();
-//        }
-        return null;
+        try(Session session = beanConfigSession.getSession()){
+            session.beginTransaction();
+            List<Product> products = session.get(Customer.class, id).getProducts();
+            session.persist(products);
+            session.getTransaction().commit();
+            return products;
+        }
     }
 
     @Override
     public List<Customer> getUserListByProductId(Long id) {
-//        try {
-//            Session session = beanConfigSession.factory().getCurrentSession();
-//            session.beginTransaction();
-//            Customer user = session.get(Product.class, id).getProducts();
-//            session.persist(users);
-//            session.getTransaction().commit();
-//            return users;
-//        } finally {
-//            beanConfigSession.factory().close();
-//        }
-        return null;
+        try (Session session = beanConfigSession.getSession()){
+            session.beginTransaction();
+            List<Customer> customer = session.get(Product.class, id).getCustomers();
+            session.persist(customer);
+            session.getTransaction().commit();
+            return customer;
+        }
     }
 }

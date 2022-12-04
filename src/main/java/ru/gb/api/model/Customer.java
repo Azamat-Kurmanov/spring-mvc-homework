@@ -22,11 +22,11 @@ public class Customer {
     @Column(name = "name", nullable = false)
     private String name;
 
-//    @ManyToMany
-//    @JoinTable(
-//            name = "customer_products",
-//            joinColumns = @JoinColumn(name = "customers_id"),
-//            inverseJoinColumns = @JoinColumn(name = "product_id")
-//    )
-//    private List<Product> products;
+    @ManyToMany
+    @JoinTable(
+            name = "customer_products",
+            joinColumns = @JoinColumn(name = "customers_id"),
+            inverseJoinColumns = @JoinColumn(name = "product_id")
+    )
+    private List<Product> products;
 }

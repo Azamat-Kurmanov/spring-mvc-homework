@@ -1,6 +1,5 @@
 package ru.gb.api;
 
-import org.hibernate.Session;
 import ru.gb.api.model.Product;
 import ru.gb.api.services.ProductDao;
 import ru.gb.api.services.ProductDaoImpl;
@@ -12,7 +11,9 @@ public class MainApp {
         sessionFactoryUtils.init();
         try {
             ProductDao productDao = new ProductDaoImpl(sessionFactoryUtils);
-//            productDao.saveOrUpdate(new Product(1L, "Картошка", 450));
+            productDao.saveOrUpdate(new Product("Картошка", 450));
+            productDao.saveOrUpdate(new Product("Мука", 240));
+
             Product product = productDao.findById(1L);
             System.out.println("product: " + product);
         }catch (Exception e){
@@ -20,11 +21,5 @@ public class MainApp {
         }finally{
             sessionFactoryUtils.shutdown();
         }
-
-//        SessionFactoryUtils sessionFactoryUtils = new SessionFactoryUtils();
-//        CustomerDaoImp customerDaoImp = new CustomerDaoImp(sessionFactoryUtils);
-//        CustomerService customerService = new CustomerService(customerDaoImp);
-//        System.out.println("Start");
-//       customerService.getListOfProductsByUserId(2L);
     }
 }
